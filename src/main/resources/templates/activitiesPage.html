@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Activities</title>
+</head>
+<body>
+    <h1>Activities</h1>
+    <p>View all your activities</p>
+    <ul>
+        <!--th for thymeleaf functions-->
+        <li th:each="activity : ${activitiesList}">
+            <span th:text="${activity.name}">Activity</span>
+        </li>
+    </ul>
+</body>
+</html>
