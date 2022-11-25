@@ -1,5 +1,6 @@
 package com.planner.tripplanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,15 +9,17 @@ import java.util.ArrayList;
 
 @Controller
 public class ActivityController {
+    @Autowired
+    private ActivityService activityService;
+
     @GetMapping("/activities")
     public String getActivities(Model model) {
-        ArrayList<Activity> activitiesList = new ArrayList<>();
-        Activity hike = new Activity("Hike up Table Mountain", "nature", "to-do", 3.5, 0.0);
-        Activity eat = new Activity("Eat at Primi Piatti's", "restaurant", "to-do", 2.0, 100.0);
-        activitiesList.add(hike);
-        activitiesList.add(eat);
-
+        // Add example activities to database
+        this.activityService.addExampleActivities();
+        ArrayList<Activity> activitiesList = activityService.getActivities();
+        // Add activities to model for front end
         model.addAttribute("activitiesList", activitiesList);
+        // Return HTML page with the model
         return "activitiesPage";
     }
 }
