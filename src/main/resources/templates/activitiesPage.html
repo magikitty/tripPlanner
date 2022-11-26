@@ -6,7 +6,11 @@
 </head>
 <body>
     <h1>Activities</h1>
-    <p>View all your activities</p>
+    <p>Add and view all your activities</p>
+    <form method="post" action="/activities">
+        <input type="text" id="activityNew" name="activityName" placeholder="New Activity" required>
+        <button type="submit">Add Activity</button>
+    </form>
     <ul>
         <!--th for thymeleaf functions-->
         <li th:each="activity : ${activitiesList}">
