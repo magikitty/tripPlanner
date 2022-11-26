@@ -10,7 +10,9 @@
     <ul>
         <!--th for thymeleaf functions-->
         <li th:each="activity : ${activitiesList}">
-            <span th:text="${activity.name}">Activity</span>
+            <a th:href="@{activities/{item}(item=${activity.name})}" th:text="${activity.name}">activity</a>
+<!--            <span th:text="${activity.name}">Activity</span>-->
+            <span th:text="${activity.getId()}">ID</span>
         </li>
     </ul>
     <form method="get" action="/">

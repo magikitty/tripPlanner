@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 
@@ -21,5 +22,12 @@ public class ActivityController {
         model.addAttribute("activitiesList", activitiesList);
         // Return HTML page with the model
         return "activitiesPage";
+    }
+
+    @GetMapping("/activities/{nameActivity}")
+    public String getActivityInfo(@PathVariable String nameActivity, Model model) {
+        Activity activity = activityService.getActivity(nameActivity);
+        model.addAttribute("activity", activity);
+        return "activityPage";
     }
 }
