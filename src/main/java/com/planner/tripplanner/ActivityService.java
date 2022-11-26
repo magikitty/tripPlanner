@@ -11,17 +11,13 @@ public class ActivityService {
     private ActivityRepository activityRepository;
 
     public void addExampleActivities() {
-        this.activityRepository.deleteAll();    // clear database
+//        this.activityRepository.deleteAll();    // clear database
         Activity hike = new Activity("Hike up Table Mountain", "nature", "to-do", 3.5, 0.0);
         Activity eat = new Activity("Eat at Primi Piatti's", "restaurant", "to-do", 2.0, 100.0);
         this.activityRepository.save(hike);
         this.activityRepository.save(eat);
-
-//        Activity test = this.activityRepository.save(hike);
-//        Long testId = this.activityRepository.save(hike).getId();  // works
-//        System.out.println("ACTIVITY saved: " + testId);  // works
-//        System.out.println("ID FOR EAT ACTIVITY " + eat.getId());  // doesn't work
-
+        System.out.println("hike id: " + hike.getId()); // debugging
+        System.out.println("eat id: " + eat.getId());   // debugging
     }
 
     public void addActivity(String nameActivity) {
@@ -29,8 +25,12 @@ public class ActivityService {
         this.activityRepository.save(activity);
     }
 
-    public Activity getActivity(String name) {
+    public Activity getActivityByName(String name) {
         return activityRepository.findByName(name).get(0);
+    }
+
+    public Activity getActivity(Long id) {
+        return activityRepository.findById(id).get();
     }
 
     public ArrayList<Activity> getActivities() {

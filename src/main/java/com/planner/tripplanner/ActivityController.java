@@ -24,9 +24,9 @@ public class ActivityController {
         return "activitiesPage";
     }
 
-    @GetMapping("/activities/{nameActivity}")
-    public String getActivityInfo(@PathVariable String nameActivity, Model model) {
-        Activity activity = activityService.getActivity(nameActivity);
+    @GetMapping("/activities/{idActivity}")
+    public String getActivityInfoId(@PathVariable String idActivity, Model model) {
+        Activity activity = activityService.getActivity(Long.valueOf(idActivity));
         model.addAttribute("activity", activity);
         return "activityPage";
     }
