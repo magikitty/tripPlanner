@@ -5,13 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class Activity extends AbstractPersistable<Long> {
+    // Mark id as primary key
+    @Id
+    private Long id;
     private String name;
     private String category;
     private String status;  // done or to-do
@@ -25,6 +28,13 @@ public class Activity extends AbstractPersistable<Long> {
         this.status = "to-do";
         this.duration = 1.0;
         this.cost = 0.0;
-        //this.id = UUID.randomUUID().getMostSignificantBits();
+    }
+
+    public Activity(String name, String category, String status, Double duration, Double cost) {
+        this.name = name;
+        this.category = category;
+        this.status = status;
+        this.duration = duration;
+        this.cost = cost;
     }
 }
