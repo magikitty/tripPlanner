@@ -20,8 +20,7 @@ public class ActivityService {
         System.out.println("eat id: " + eat.getId());   // debugging
     }
 
-    public void addActivity(String nameActivity) {
-        Activity activity = new Activity(nameActivity);
+    public void addActivity(Activity activity) {
         this.activityRepository.save(activity);
     }
 

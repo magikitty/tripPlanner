@@ -34,8 +34,11 @@ public class ActivityController {
     }
 
     @PostMapping("/activities")
-    public String addActivity(@RequestParam String activityName) {
-        activityService.addActivity(activityName);
+    public String addActivity(@RequestParam String activityName, String activityDuration, String activityCost,
+                              String activityCategory, String activityStatus) {
+        Activity activity = new Activity(activityName, activityCategory, activityStatus,
+                Double.parseDouble(activityDuration), Double.parseDouble(activityCost));
+        activityService.addActivity(activity);
         return "redirect:/activities";
     }
 }
