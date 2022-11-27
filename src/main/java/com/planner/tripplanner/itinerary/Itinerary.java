@@ -12,7 +12,12 @@ import java.util.ArrayList;
 @Data
 public class Itinerary {
     private Long id;
-    private int name;
+    private String name;
     private int duration;   // number of days
     private ArrayList<Activity> activities;
+
+    public Itinerary(String name, int duration) {
+        this.name = name;
+        this.duration = duration;
+    }
 }
