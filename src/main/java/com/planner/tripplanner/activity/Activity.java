@@ -1,4 +1,4 @@
-package com.planner.tripplanner;
+package com.planner.tripplanner.activity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

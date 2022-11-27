@@ -1,4 +1,4 @@
-package com.planner.tripplanner;
+package com.planner.tripplanner.activity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

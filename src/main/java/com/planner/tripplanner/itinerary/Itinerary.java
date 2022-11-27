@@ -1,5 +1,6 @@
-package com.planner.tripplanner;
+package com.planner.tripplanner.itinerary;
 
+import com.planner.tripplanner.activity.Activity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
