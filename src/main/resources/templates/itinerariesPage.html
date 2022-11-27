@@ -7,6 +7,13 @@
 <body>
   <h1>Itineraries</h1>
   <h3>View your itineraries</h3>
+  <ul>
+      <li th:each="itinerary : ${itineraryList}">
+<!--          <a th:href="@{activities/{item}(item=${activity.getId()})}" th:text="${activity.name}">activity</a>-->
+          <span th:text="${itinerary.name}">Itinerary</span>
+          <span th:text="${itinerary.getId()}">ID</span>
+      </li>
+  </ul>
   <form method="get" action="/">
     <button>Back</button>
   </form>
