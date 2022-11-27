@@ -14,7 +14,8 @@ public class ItineraryController {
 
     @GetMapping("/itineraries")
     public String getItineraries(Model model) {
-        ArrayList<Itinerary> itineraryList = itineraryService.addExampleItineraries();
+        itineraryService.addExampleItineraries();
+        ArrayList<Itinerary> itineraryList = itineraryService.getItineraries();
         model.addAttribute("itineraryList", itineraryList);
         return "itinerariesPage";
     }

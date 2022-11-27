@@ -1,18 +1,24 @@
 package com.planner.tripplanner.itinerary;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 @Service
 public class ItineraryService {
+    @Autowired
+    private ItineraryRepository itineraryRepository;
 
-    public ArrayList<Itinerary> addExampleItineraries() {
+    public void addExampleItineraries() {
         Itinerary itinerary1 = new Itinerary("Cape Town", 10);
         Itinerary itinerary2 = new Itinerary("Bangkok", 7);
-        ArrayList<Itinerary> itineraries = new ArrayList<>();
-        itineraries.add(itinerary1);
-        itineraries.add(itinerary2);
+        this.itineraryRepository.save(itinerary1);
+        this.itineraryRepository.save(itinerary2);
+    }
+
+    public ArrayList<Itinerary> getItineraries() {
+        ArrayList<Itinerary> itineraries = this.itineraryRepository.findAll();
         return itineraries;
     }
 }

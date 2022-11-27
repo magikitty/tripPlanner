@@ -1,20 +1,22 @@
 package com.planner.tripplanner.itinerary;
 
-import com.planner.tripplanner.activity.Activity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Itinerary {
+public class Itinerary extends AbstractPersistable<Long> {
+    @Id
     private Long id;
     private String name;
     private int duration;   // number of days
-    private ArrayList<Activity> activities;
 
     public Itinerary(String name, int duration) {
         this.name = name;
