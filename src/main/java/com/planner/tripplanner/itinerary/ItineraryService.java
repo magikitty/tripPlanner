@@ -21,4 +21,8 @@ public class ItineraryService {
         ArrayList<Itinerary> itineraries = this.itineraryRepository.findAll();
         return itineraries;
     }
+
+    public Itinerary getItineraryById(Long id) {
+        return this.itineraryRepository.getReferenceById(id);
+    }
 }

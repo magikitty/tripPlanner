@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 
@@ -18,5 +19,12 @@ public class ItineraryController {
         ArrayList<Itinerary> itineraryList = itineraryService.getItineraries();
         model.addAttribute("itineraryList", itineraryList);
         return "itinerariesPage";
+    }
+
+    @GetMapping ("/itineraries/{idItinerary}")
+    public String getItineraryInfo(@PathVariable String idItinerary, Model model) {
+        Itinerary itinerary = itineraryService.getItineraryById(Long.valueOf(idItinerary));
+        model.addAttribute("itinerary", itinerary);
+        return "itineraryPage";
     }
 }
