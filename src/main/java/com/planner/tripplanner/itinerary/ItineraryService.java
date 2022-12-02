@@ -1,5 +1,6 @@
 package com.planner.tripplanner.itinerary;
 
+import org.apache.tomcat.util.http.fileupload.FileItemIterator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,20 @@ public class ItineraryService {
     }
 
     public void addItinerary(Itinerary itinerary) {
+        this.itineraryRepository.save(itinerary);
+    }
+
+    public void addItineraryStrings(String itineraryName, String itineraryDestination, String itineraryDuration) {
+        int durationInt;
+
+        try {
+            durationInt = Integer.parseInt(itineraryDuration);
+        } catch (NumberFormatException exception) {
+            System.out.println(exception);
+            durationInt = 0;
+        }
+
+        Itinerary itinerary = new Itinerary(itineraryName, itineraryDestination, durationInt);
         this.itineraryRepository.save(itinerary);
     }
 }

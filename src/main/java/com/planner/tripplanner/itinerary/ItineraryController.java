@@ -23,17 +23,16 @@ public class ItineraryController {
         return "itinerariesPage";
     }
 
+    @PostMapping("/itineraries")
+    public String addItinerary(@RequestParam String itineraryName, String itineraryDestination, String itineraryDuration) {
+        itineraryService.addItineraryStrings(itineraryName, itineraryDestination, itineraryDuration);
+        return "redirect:/itineraries";
+    }
+
     @GetMapping ("/itineraries/{idItinerary}")
     public String getItineraryInfo(@PathVariable String idItinerary, Model model) {
         Itinerary itinerary = itineraryService.getItineraryById(Long.valueOf(idItinerary));
         model.addAttribute("itinerary", itinerary);
         return "itineraryPage";
-    }
-
-    @PostMapping("/itineraries")
-    public String addItinerary(@RequestParam String itineraryName, String itineraryDestination, String itineraryDuration) {
-        Itinerary itinerary = new Itinerary(itineraryName, itineraryDestination, Integer.parseInt(itineraryDuration));
-        itineraryService.addItinerary(itinerary);
-        return "redirect:/itineraries";
     }
 }
