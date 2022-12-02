@@ -6,6 +6,7 @@
 </head>
 <body>
     <h2 th:text="${itinerary.name}">name</h2>
+    <p th:text="'Destination: ' + ${itinerary.destination}"></p>
     <p th:text="'Duration: ' + ${itinerary.duration} + ' days'"></p>
     <form method="get" action="/itineraries">
         <button>Back</button>

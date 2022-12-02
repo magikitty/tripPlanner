@@ -6,12 +6,20 @@
 </head>
 <body>
   <h1>Itineraries</h1>
+  <h3>Add a new itinerary</h3>
+  <form method="post" action="/itineraries">
+      <label for="itineraryNameNew">Name:</label><br>
+      <input type="text" id="itineraryNameNew" name="itineraryName" placeholder="New Itinerary" required><br>
+      <label for="itineraryDestinationNew">Destination:</label><br>
+      <input type="text" id="itineraryDestinationNew" name="itineraryDestination" placeholder="Destination" required><br>
+      <label for="itineraryDurationNew">Duration (days):</label><br>
+      <input type="text" id="itineraryDurationNew" name="itineraryDuration" placeholder="1" required><br>
+      <button type="submit">Add Itinerary</button>
+  </form>
   <h3>View your itineraries</h3>
   <ul>
       <li th:each="itinerary : ${itineraryList}">
           <a th:href="@{itineraries/{item}(item=${itinerary.getId()})}" th:text="${itinerary.name}">itinerary</a>
-<!--          <span th:text="${itinerary.name}">Itinerary</span>-->
-<!--          <span th:text="${itinerary.getId()}">ID</span>-->
       </li>
   </ul>
   <form method="get" action="/">

@@ -25,4 +25,8 @@ public class ItineraryService {
     public Itinerary getItineraryById(Long id) {
         return this.itineraryRepository.getReferenceById(id);
     }
+
+    public void addItinerary(Itinerary itinerary) {
+        this.itineraryRepository.save(itinerary);
+    }
 }

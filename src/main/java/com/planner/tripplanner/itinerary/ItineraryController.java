@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
@@ -15,7 +17,7 @@ public class ItineraryController {
 
     @GetMapping("/itineraries")
     public String getItineraries(Model model) {
-        itineraryService.addExampleItineraries();
+//        itineraryService.addExampleItineraries();
         ArrayList<Itinerary> itineraryList = itineraryService.getItineraries();
         model.addAttribute("itineraryList", itineraryList);
         return "itinerariesPage";
@@ -26,5 +28,12 @@ public class ItineraryController {
         Itinerary itinerary = itineraryService.getItineraryById(Long.valueOf(idItinerary));
         model.addAttribute("itinerary", itinerary);
         return "itineraryPage";
+    }
+
+    @PostMapping("/itineraries")
+    public String addItinerary(@RequestParam String itineraryName, String itineraryDestination, String itineraryDuration) {
+        Itinerary itinerary = new Itinerary(itineraryName, itineraryDestination, Integer.parseInt(itineraryDuration));
+        itineraryService.addItinerary(itinerary);
+        return "redirect:/itineraries";
     }
 }

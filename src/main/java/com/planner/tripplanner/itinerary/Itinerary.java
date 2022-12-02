@@ -16,7 +16,14 @@ public class Itinerary extends AbstractPersistable<Long> {
     @Id
     private Long id;
     private String name;
+    private String destination;
     private int duration;   // number of days
+
+    public Itinerary(String name, String destination, int duration) {
+        this.name = name;
+        this.destination = destination;
+        this.duration = duration;
+    }
 
     public Itinerary(String name, int duration) {
         this.name = name;
