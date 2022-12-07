@@ -1,6 +1,5 @@
 package com.planner.tripplanner.activity;
 
-import com.planner.tripplanner.itinerary.Itinerary;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,9 +20,6 @@ public class Activity extends AbstractPersistable<Long> {
     private String status;  // done or to-do
     private Double duration;    // in hours
     private Double cost;
-//    @ManyToOne
-//    @JoinColumn(name="itinerary_id", nullable = false)
-//    private Itinerary itinerary;
 
     // Constructor with default values
     public Activity(String name) {

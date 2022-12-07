@@ -1,7 +1,6 @@
 package com.planner.tripplanner.itinerary;
 
 import com.planner.tripplanner.activity.Activity;
-import org.apache.tomcat.util.http.fileupload.FileItemIterator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

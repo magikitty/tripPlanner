@@ -44,12 +44,11 @@ public class ItineraryController {
     @PostMapping("/itineraries/{idItinerary}")
     public String addActivity(@RequestParam String activityName, String activityDuration, String activityCost,
                               String activityCategory, String activityStatus, @PathVariable String idItinerary) {
+        // Create activity from request parameters
         Activity activity = new Activity(activityName, activityCategory, activityStatus,
                 Double.parseDouble(activityDuration), Double.parseDouble(activityCost));
+        // Add activity to activities database and itinerary
         activityService.addActivity(activity);
-        // Get itinerary object from page Model
-//        Itinerary itinerary = (Itinerary) model.getAttribute("itinerary");
-
         itineraryService.addActivityToItinerary(idItinerary, activity);
         return "redirect:/itineraries/{idItinerary}";
     }

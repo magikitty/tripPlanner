@@ -1,7 +1,6 @@
 package com.planner.tripplanner.itinerary;
 
 import com.planner.tripplanner.activity.Activity;
-import com.planner.tripplanner.activity.ActivityService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -25,8 +23,6 @@ public class Itinerary extends AbstractPersistable<Long> {
     private String destination;
     private int duration;   // number of days
     // One itinerary can have many activities - one-to-many mapping in database
-//    @OneToMany(mappedBy = "itinerary")
-//    private ArrayList<Activity> activities;
     @OneToMany()
     private List<Activity> activities;
 
@@ -34,13 +30,13 @@ public class Itinerary extends AbstractPersistable<Long> {
         this.name = name;
         this.destination = destination;
         this.duration = duration;
-        this.activities = new ArrayList<Activity>();
+        this.activities = new ArrayList<>();
     }
 
     public Itinerary(String name, int duration) {
         this.name = name;
         this.duration = duration;
-        this.activities = new ArrayList<Activity>();
+        this.activities = new ArrayList<>();
     }
 
     public void addActivity(Activity activity) {
