@@ -53,4 +53,11 @@ public class ItineraryController {
         itineraryService.addActivityToItinerary(idItinerary, activity);
         return "redirect:/itineraries/{idItinerary}";
     }
+
+    @GetMapping("/itineraries/activities/{idActivity}")
+    public String viewActivity(@PathVariable String idActivity, Model model) {
+        Activity activity = activityService.getActivity(Long.valueOf(idActivity));
+        model.addAttribute("activity", activity);
+        return "activityPage";
+    }
 }
