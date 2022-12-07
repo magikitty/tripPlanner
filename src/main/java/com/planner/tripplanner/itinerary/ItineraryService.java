@@ -1,10 +1,12 @@
 package com.planner.tripplanner.itinerary;
 
+import com.planner.tripplanner.activity.Activity;
 import org.apache.tomcat.util.http.fileupload.FileItemIterator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class ItineraryService {
@@ -42,6 +44,13 @@ public class ItineraryService {
         }
 
         Itinerary itinerary = new Itinerary(itineraryName, itineraryDestination, durationInt);
+        this.itineraryRepository.save(itinerary);
+    }
+
+    public void addActivityToItinerary(String itineraryId, Activity activity) {
+        Optional<Itinerary> itineraryOptional = this.itineraryRepository.findById(Long.parseLong(itineraryId));
+        Itinerary itinerary = itineraryOptional.get();
+        itinerary.addActivity(activity);
         this.itineraryRepository.save(itinerary);
     }
 }

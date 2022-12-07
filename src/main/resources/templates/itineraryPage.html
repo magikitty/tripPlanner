@@ -8,6 +8,31 @@
     <h2 th:text="${itinerary.name}">name</h2>
     <p th:text="'Destination: ' + ${itinerary.destination}"></p>
     <p th:text="'Duration: ' + ${itinerary.duration} + ' days'"></p>
+    <h3>Planned activities</h3>
+    <ul>
+        <li th:each="activity : ${itinerary.activities}">
+            <a th:href="@{activities/{item}(item=${activity.getId()})}" th:text="${activity.name}">activity</a>
+            <!--            <a th:href="@{activities/{item}(item=${activity.name})}" th:text="${activity.name}">activity</a>-->
+            <!--            <span th:text="${activity.name}">Activity</span>-->
+            <!--            <span th:text="${activity.getId()}">ID</span>-->
+        </li>
+    </ul>
+
+    <h3>Add a new activity</h3>
+    <form method="post" action="">
+        <label for="nameActivityNew">Name:</label><br>
+        <input type="text" id="nameActivityNew" name="activityName" placeholder="New Activity" required><br>
+        <label for="durationActivityNew">Duration (hours):</label><br>
+        <input type="text" id="durationActivityNew" name="activityDuration" placeholder="1" required><br>
+        <label for="costActivityNew">Cost:</label><br>
+        <input type="text" id="costActivityNew" name="activityCost" placeholder="0.0" required><br>
+        <label for="categoryActivityNew">Category:</label><br>
+        <input type="text" id="categoryActivityNew" name="activityCategory" placeholder="activity" required><br>
+        <label for="statusActivityNew">Status:</label><br>
+        <input type="text" id="statusActivityNew" name="activityStatus" placeholder="to-do" required><br>
+        <button type="submit">Add Activity</button>
+    </form>
+
     <form method="get" action="/itineraries">
         <button>Back</button>
     </form>

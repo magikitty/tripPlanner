@@ -1,5 +1,7 @@
 package com.planner.tripplanner.itinerary;
 
+import com.planner.tripplanner.activity.Activity;
+import com.planner.tripplanner.activity.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,9 @@ import java.util.ArrayList;
 public class ItineraryController {
     @Autowired
     private ItineraryService itineraryService;
+
+    @Autowired
+    private ActivityService activityService;
 
     @GetMapping("/itineraries")
     public String getItineraries(Model model) {
@@ -34,5 +39,18 @@ public class ItineraryController {
         Itinerary itinerary = itineraryService.getItineraryById(Long.valueOf(idItinerary));
         model.addAttribute("itinerary", itinerary);
         return "itineraryPage";
+    }
+
+    @PostMapping("/itineraries/{idItinerary}")
+    public String addActivity(@RequestParam String activityName, String activityDuration, String activityCost,
+                              String activityCategory, String activityStatus, @PathVariable String idItinerary) {
+        Activity activity = new Activity(activityName, activityCategory, activityStatus,
+                Double.parseDouble(activityDuration), Double.parseDouble(activityCost));
+        activityService.addActivity(activity);
+        // Get itinerary object from page Model
+//        Itinerary itinerary = (Itinerary) model.getAttribute("itinerary");
+
+        itineraryService.addActivityToItinerary(idItinerary, activity);
+        return "redirect:/itineraries/{idItinerary}";
     }
 }
