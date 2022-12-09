@@ -8,6 +8,9 @@
     <h2 th:text="${itinerary.name}">name</h2>
     <p th:text="'Destination: ' + ${itinerary.destination}"></p>
     <p th:text="'Duration: ' + ${itinerary.duration} + ' days'"></p>
+    <p th:text="'Total budget: ' + ${itinerary.budget.getTotalBudget()}"></p>
+    <p th:text="'Amount used from budget: ' + ${itinerary.getBudgetUsed()}"></p>
+    <p th:text="'Amount left from budget: ' + ${itinerary.getBudgetLeft()}"></p>
     <h3>Planned activities</h3>
     <ul>
         <li th:each="activity : ${itinerary.activities}">
