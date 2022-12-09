@@ -2,6 +2,8 @@ package com.planner.tripplanner.itinerary;
 
 import com.planner.tripplanner.activity.Activity;
 import com.planner.tripplanner.activity.ActivityService;
+import com.planner.tripplanner.budget.BudgetService;
+import net.bytebuddy.utility.nullability.AlwaysNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,8 +31,8 @@ public class ItineraryController {
     }
 
     @PostMapping("/itineraries")
-    public String addItinerary(@RequestParam String itineraryName, String itineraryDestination, String itineraryDuration) {
-        itineraryService.addItineraryStrings(itineraryName, itineraryDestination, itineraryDuration);
+    public String addItinerary(@RequestParam String itineraryName, String itineraryDestination, String itineraryDuration, String itineraryBudget) {
+        itineraryService.addItineraryStrings(itineraryName, itineraryDestination, itineraryDuration, itineraryBudget);
         return "redirect:/itineraries";
     }
 

@@ -1,6 +1,8 @@
 package com.planner.tripplanner.itinerary;
 
 import com.planner.tripplanner.activity.Activity;
+import com.planner.tripplanner.budget.Budget;
+import com.planner.tripplanner.budget.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,9 @@ import java.util.Optional;
 public class ItineraryService {
     @Autowired
     private ItineraryRepository itineraryRepository;
+
+    @Autowired
+    private BudgetService budgetService;
 
     public void addExampleItineraries() {
         Itinerary itinerary1 = new Itinerary("Cape Town", 10);
@@ -32,7 +37,7 @@ public class ItineraryService {
         this.itineraryRepository.save(itinerary);
     }
 
-    public void addItineraryStrings(String itineraryName, String itineraryDestination, String itineraryDuration) {
+    public void addItineraryStrings(String itineraryName, String itineraryDestination, String itineraryDuration, String itineraryBudget) {
         int durationInt;
 
         try {
@@ -42,7 +47,11 @@ public class ItineraryService {
             durationInt = 0;
         }
 
-        Itinerary itinerary = new Itinerary(itineraryName, itineraryDestination, durationInt);
+        Budget budget = new Budget();
+        budget.setTotalBudget(Double.valueOf(itineraryBudget));
+        this.budgetService.addBudget(budget);
+
+        Itinerary itinerary = new Itinerary(itineraryName, itineraryDestination, durationInt, budget);
         this.itineraryRepository.save(itinerary);
     }
 

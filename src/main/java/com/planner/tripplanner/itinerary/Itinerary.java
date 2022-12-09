@@ -1,6 +1,7 @@
 package com.planner.tripplanner.itinerary;
 
 import com.planner.tripplanner.activity.Activity;
+import com.planner.tripplanner.budget.Budget;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +27,15 @@ public class Itinerary extends AbstractPersistable<Long> {
     // One itinerary can have many activities - one-to-many mapping in database
     @OneToMany()
     private List<Activity> activities;
+    @OneToOne
+    private Budget budget;
 
-    public Itinerary(String name, String destination, int duration) {
+    public Itinerary(String name, String destination, int duration, Budget budget) {
         this.name = name;
         this.destination = destination;
         this.duration = duration;
         this.activities = new ArrayList<>();
+        this.budget = budget;
     }
 
     public Itinerary(String name, int duration) {
@@ -41,5 +46,15 @@ public class Itinerary extends AbstractPersistable<Long> {
 
     public void addActivity(Activity activity) {
         this.activities.add(activity);
+    }
+
+    public Double getBudgetUsed() {
+        this.budget.calculateAmountUsed(this.activities);
+        return this.budget.getAmountUsed();
+    }
+
+    public Double getBudgetLeft() {
+        this.budget.calculateAmountLeft(this.activities);
+        return this.budget.getAmountLeft();
     }
 }
