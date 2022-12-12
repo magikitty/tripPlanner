@@ -11,7 +11,6 @@ import java.util.List;
 
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
 @Data
 public class Budget extends AbstractPersistable<Long> {
 //    @Id
@@ -25,6 +24,12 @@ public class Budget extends AbstractPersistable<Long> {
     private Double totalBudget;
     private Double amountUsed;
     private Double amountLeft;
+
+    public Budget() {
+        this.totalBudget = 0.0;
+        this.amountLeft = 0.0;
+        this.amountUsed = 0.0;
+    }
 
     public Long getId() {
         return id;
