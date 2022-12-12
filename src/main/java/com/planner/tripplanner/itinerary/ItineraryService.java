@@ -61,4 +61,11 @@ public class ItineraryService {
         itinerary.addActivity(activity);
         this.itineraryRepository.save(itinerary);
     }
+
+    public void deleteActivityFromItinerary(String itineraryId, Activity activity) {
+        Optional<Itinerary> itineraryOptional = this.itineraryRepository.findById(Long.parseLong(itineraryId));
+        Itinerary itinerary = itineraryOptional.get();
+        itinerary.removeActivity(activity);
+        this.itineraryRepository.save(itinerary);
+    }
 }

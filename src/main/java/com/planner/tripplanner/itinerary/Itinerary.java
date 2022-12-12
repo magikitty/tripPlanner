@@ -48,6 +48,10 @@ public class Itinerary extends AbstractPersistable<Long> {
         this.activities.add(activity);
     }
 
+    public void removeActivity(Activity activity) {
+        this.activities.remove(activity);
+    }
+
     public Double getBudgetUsed() {
         this.budget.calculateAmountUsed(this.activities);
         return this.budget.getAmountUsed();

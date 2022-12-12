@@ -15,9 +15,11 @@
     <ul>
         <li th:each="activity : ${itinerary.activities}">
             <a th:href="@{activities/{item}(item=${activity.getId()})}" th:text="${activity.name}">activity</a>
-            <!--            <a th:href="@{activities/{item}(item=${activity.name})}" th:text="${activity.name}">activity</a>-->
-            <!--            <span th:text="${activity.name}">Activity</span>-->
-            <!--            <span th:text="${activity.getId()}">ID</span>-->
+            <form method="post" action="/deleteActivity">
+                <input type="hidden" name="activityId" th:value="${activity.getId()}">
+                <input type="hidden" name="idItinerary" th:value="${itinerary.getId()}">
+                <button>Delete</button>
+            </form>
         </li>
     </ul>
 
