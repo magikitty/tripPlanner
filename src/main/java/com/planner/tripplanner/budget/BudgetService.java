@@ -11,4 +11,8 @@ public class BudgetService {
     public void addBudget(Budget budget) {
         this.budgetRepository.save(budget);
     }
+
+    public Budget getBudgetById(Long id) {
+        return this.budgetRepository.getReferenceById(id);
+    }
 }
