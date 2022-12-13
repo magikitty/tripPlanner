@@ -11,6 +11,7 @@
     <p th:text="'Total budget: ' + ${itinerary.budget.getTotalBudget()}"></p>
     <p th:text="'Amount used from budget: ' + ${itinerary.getBudgetUsed()}"></p>
     <p th:text="'Amount left from budget: ' + ${itinerary.getBudgetLeft()}"></p>
+    <a th:href="@{/budget{id}(id=${itinerary.budget.getId()})}">budget</a>
     <h3>Planned activities</h3>
     <ul>
         <li th:each="activity : ${itinerary.activities}">
