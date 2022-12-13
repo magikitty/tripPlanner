@@ -14,10 +14,17 @@
         <input type="text" id="durationActivityNew" name="activityDuration" placeholder="1" required><br>
         <label for="costActivityNew">Cost:</label><br>
         <input type="text" id="costActivityNew" name="activityCost" placeholder="0.0" required><br>
-        <label for="categoryActivityNew">Category:</label><br>
-        <input type="text" id="categoryActivityNew" name="activityCategory" placeholder="activity" required><br>
         <label for="statusActivityNew">Status:</label><br>
         <input type="text" id="statusActivityNew" name="activityStatus" placeholder="to-do" required><br>
+<!--        Dropdown selection for activity category-->
+        <label for="categoryActivityNew">Category:</label><br>
+        <select id="categoryActivityNew" name="activityCategory">
+            <option value="Culture">Culture</option>
+            <option value="Eating and drinking">Eating and drinking</option>
+            <option value="Nature">Nature</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Other activities">Other activities</option>
+        </select><br>
         <button type="submit">Add Activity</button>
     </form>
     <h3>Current activities</h3>
