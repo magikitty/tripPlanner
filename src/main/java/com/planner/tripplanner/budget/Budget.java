@@ -36,15 +36,20 @@ public class Budget extends AbstractPersistable<Long> {
         this.id = id;
     }
 
-    public void calculateAmountUsed(List<Activity> activities) {
+    public Double calculateAmountUsed(List<Activity> activities) {
+        Double total = 0.0;
         for (Activity activity : activities) {
-            this.amountUsed += activity.getCost();
+            total += activity.getCost();
         }
+        this.amountUsed = total;
+        return total;
     }
 
-    public void calculateAmountLeft(List<Activity> activities) {
-        calculateAmountUsed(activities);
-        this.amountLeft = this.totalBudget - this.amountUsed;
+    public Double calculateAmountLeft(List<Activity> activities) {
+        Double totalUsed = calculateAmountUsed(activities);
+        Double totalLeft = this.totalBudget - totalUsed;
+        this.amountLeft = totalLeft;
+        return totalLeft;
     }
 
     // Calculate total amount budgeted for activities in each category

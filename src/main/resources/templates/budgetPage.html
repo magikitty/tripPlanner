@@ -12,6 +12,9 @@
     <p th:text="'Nature: ' + ${budgetNature}"></p>
     <p th:text="'Shopping: ' + ${budgetShopping}"></p>
     <p th:text="'Other activities: ' + ${budgetOther}"></p>
+    <br>
     <p th:text="'Total budget for the trip: ' + ${budget.getTotalBudget()}"></p>
+    <p th:text="'Amount used: ' + ${itinerary.getBudgetUsed()}"></p>
+    <p th:text="'Amount left: ' + ${itinerary.getBudgetLeft()}"></p>
 </body>
 </html>
