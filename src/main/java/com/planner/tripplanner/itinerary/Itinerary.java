@@ -7,10 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +33,7 @@ public class Itinerary extends AbstractPersistable<Long> {
         this.duration = duration;
         this.activities = new ArrayList<>();
         this.budget = budget;
+        this.budget.setIdItinerary(this.id);
     }
 
     public Itinerary(String name, int duration) {

@@ -11,7 +11,11 @@
     <p th:text="'Total budget: ' + ${itinerary.budget.getTotalBudget()}"></p>
     <p th:text="'Amount used from budget: ' + ${itinerary.getBudgetUsed()}"></p>
     <p th:text="'Amount left from budget: ' + ${itinerary.getBudgetLeft()}"></p>
-    <a th:href="@{/budget{id}(id=${itinerary.budget.getId()})}">budget</a>
+<!--    <a th:href="@{/budget{id}(id=${itinerary.budget.getId()})}">budget</a>-->
+    <form method="get" th:action="@{/budget{id}(id=${itinerary.budget.getId()})}">
+        <input type="hidden" name="idItinerary" th:value="${itinerary.getId()}">
+        <button>Budget breakdown</button>
+    </form>
     <h3>Planned activities</h3>
     <ul>
         <li th:each="activity : ${itinerary.activities}">
