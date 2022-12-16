@@ -1,29 +1,26 @@
 package com.planner.tripplanner.budget;
 
 import com.planner.tripplanner.activity.Activity;
+import com.planner.tripplanner.itinerary.Itinerary;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @AllArgsConstructor
 @Data
 public class Budget extends AbstractPersistable<Long> {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "id", nullable = false)
-//    private Long id;
-
     @Id
     private Long id;
 
     private Double totalBudget;
     private Double amountUsed;
     private Double amountLeft;
+    private Long idItinerary;
 
     public Budget() {
         this.totalBudget = 0.0;
@@ -48,5 +45,19 @@ public class Budget extends AbstractPersistable<Long> {
     public void calculateAmountLeft(List<Activity> activities) {
         calculateAmountUsed(activities);
         this.amountLeft = this.totalBudget - this.amountUsed;
+    }
+
+    // Calculate total amount budgeted for activities in each category
+    public Double calcCategoryBudget(Itinerary itinerary, String category) {
+        Double total = 0.0;
+        List<Activity> activities = itinerary.getActivities();
+
+        for (Activity activity : activities) {
+            if (Objects.equals(activity.getCategory(), category)) {
+                total += activity.getCost();
+            }
+        }
+
+        return total;
     }
 }
