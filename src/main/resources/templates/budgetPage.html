@@ -5,8 +5,13 @@
     <title>Budget</title>
 </head>
 <body>
-    <h2>Budget Breakdown</h2>
-    <p>Here is a breakdown of the budget</p>
-    <p th:text="'Budget id: ' + ${budget.id}"></p>
+    <h2 th:text="'Budget Breakdown for: ' + ${itinerary.getName()}">Budget Breakdown</h2>
+    <h3>Here is a breakdown of your budget for the different categories</h3>
+    <p th:text="'Culture: ' + ${budgetCulture}"></p>
+    <p th:text="'Eating and drinking: ' + ${budgetEat}"></p>
+    <p th:text="'Nature: ' + ${budgetNature}"></p>
+    <p th:text="'Shopping: ' + ${budgetShopping}"></p>
+    <p th:text="'Other activities: ' + ${budgetOther}"></p>
+    <p th:text="'Total budget for the trip: ' + ${budget.getTotalBudget()}"></p>
 </body>
 </html>
